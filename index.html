@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oishii Rolls 🍥 🍙</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    
+    <header>
+        <div class="logo-area">
+            <a href="#" onclick="switchView('home')">
+                <img src="./img/logo.jpeg" alt="Oishii Rolls Logo" class="site-logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" id="nav-home" class="nav-btn active" onclick="switchView('home')">Inicio</a></li>
+                <li><a href="#" id="nav-catalog" class="nav-btn" onclick="switchView('catalog')">Productos</a></li>
+                <li><a href="#" id="nav-about" class="nav-btn" onclick="switchView('support')">Quiénes Somos / Info</a></li>
+                <li><a href="#" id="nav-contact" class="nav-btn" onclick="openWhatsAppDirect()">Contacto</a></li>
+            </ul>
+        </nav>
+        <div class="cart-trigger" onclick="toggleCartDrawer()">
+            🛒 Carrito <span id="cart-counter">0</span>
+        </div>
+    </header>
+
+    
+    <section id="screen-home" class="view-screen active">
+        <div class="hero-banner" style="background-image: url('fongo.jpg.jpeg');">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>Sushi artesanal, fresco y hecho con amor🥢🍱♥</h1>
+                <p>Descubrí nuestras promociones de la semana y armá tu pedido al instante.</p>
+                <button class="btn-cta" onclick="switchView('catalog')">Ver Menú Completo 🍣</button>
+            </div>
+        </div>
+
+        <div class="quick-filter-bar">
+            <button class="filter-btn active" onclick="filterCatalog('todos')">Todos</button>
+            <button class="filter-btn" onclick="filterCatalog('combos')">Combos</button>
+            <button class="filter-btn" onclick="filterCatalog('rolls')">Rolls</button>
+            <button class="filter-btn" onclick="filterCatalog('veggie')">Veggie</button>
+            <button class="filter-btn" onclick="filterCatalog('entradas')">Entradas</button>
+        </div>
+
+        <div class="promo-carousel">
+            <h2>Promos Destacadas</h2>
+            <div id="promo-container" class="carousel-items"></div>
+        </div>
+    </section>
+
+  
+    <section id="screen-catalog" class="view-screen">
+        <h2>Catálogo de Productos</h2>
+        <div id="product-grid" class="product-grid"></div>
+    </section>
+
+   
+    <section id="screen-support" class="view-screen">
+        <h2>Información y Soporte</h2>
+        <div class="support-content">
+            <div class="info-block">
+                <h3>📍 Retiro y Envíos</h3>
+                <p>Retiro por domicilio en Cipolletti. Pedidos con 24 hs de anticipación.</p>
+            </div>
+            <div class="info-block">
+                <h3>❓ Preguntas Frecuentes (FAQ)</h3>
+                <details>
+                    <summary>¿Qué medios de pago aceptan?</summary>
+                    <p>Efectivo (con descuento en promos) y transferencia bancaria.</p>
+                </details>
+                <details>
+                    <summary>Conservación del sushi</summary>
+                    <p>Mantener refrigerado entre 2°C y 5°C. Consumir dentro de las 24 hs.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+ 
+    <div id="detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeDetailModal()">×</span>
+            <h3 id="modal-title">Personalizar Producto</h3>
+            <div id="modal-options">
+                <label>Sabor Principal:</label>
+                <select id="modal-flavor" class="select-box">
+                    <option value="Pollo">Pollo</option>
+                    <option value="Kanikama">Kanikama</option>
+                    <option value="Langostinos">Langostinos</option>
+                </select>
+                <label class="checkbox-label"><input type="checkbox" id="opt-soja" checked> Salsa Soja Extra</label>
+                <label class="checkbox-label"><input type="checkbox" id="opt-wasabi"> Agregar Wasabi</label>
+            </div>
+            <button class="btn-cta" onclick="confirmAddToCart()">Agregar al Carrito 🛒</button>
+        </div>
+    </div>
+
+    
+    <div id="cart-drawer" class="cart-drawer">
+        <div class="drawer-header">
+            <h3>Tu Pedido</h3>
+            <span class="close-btn" onclick="toggleCartDrawer()">×</span>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <p class="empty-cart-text">Tu carrito está vacío</p>
+        </div>
+        <div class="drawer-footer">
+            <div class="delivery-config">
+                <label><input type="radio" name="delivery" value="retiro" checked> Retiro en Local</label>
+                <label><input type="radio" name="delivery" value="envio"> Delivery por Zona</label>
+            </div>
+            <div class="total-row">
+                <span>Total:</span>
+                <strong id="cart-total">$0</strong>
+            </div>
+            <button class="btn-whatsapp-checkout" onclick="checkoutWhatsApp()">Enviar Pedido a WhatsApp 📱</button>
+        </div>
+    </div>
+
+   
+    <div class="floating-contact" onclick="openWhatsAppDirect()" title="Consultar por WhatsApp">💬</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
